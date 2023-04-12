@@ -21,6 +21,7 @@ public class Persona implements Parcelable {
         this.cognome=cognome;
         this.anni=anni;
     }
+
     //Costruttore per la parcellizzazione
     private Persona(Parcel in)
     {

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -20,7 +21,8 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ListView personeListView;
+    private GridView personeListView;
+    private int[] locandine;
     private ArrayList<Persona> personeArrayList;
     public static final String LIST_POSITION="list_position";
     private static final String JASON_TEST="JASON_TEST";
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         personeListView = findViewById(R.id.personeListView);
 
@@ -194,10 +197,31 @@ public class MainActivity extends AppCompatActivity {
             personeArrayList);
         */
 
+        locandine = new int[]{R.drawable.uno,
+                R.drawable.due,
+                R.drawable.tre,
+                R.drawable.quattro,
+                R.drawable.cinque,
+                R.drawable.sei,
+                R.drawable.sette,
+                R.drawable.otto,
+                R.drawable.nove,
+                R.drawable.dieci,
+                R.drawable.undici,
+                R.drawable.dodici,
+                R.drawable.tredici,
+                R.drawable.quattordici,
+                R.drawable.quindici,
+                R.drawable.sedici,
+                R.drawable.disciassette,
+                R.drawable.diciotto,
+                R.drawable.diciannove,
+                R.drawable.venti };
+
         //guarda recycling view e card
         PersonaAdapter personaAdapter=new PersonaAdapter(this,
                 R.layout.rowcustom,
-                personeArrayList);
+                personeArrayList, locandine);
 
         personeListView.setAdapter(personaAdapter);
 
@@ -216,6 +240,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent=new Intent(getBaseContext(), SecondActivity.class);
                 intent.putExtra(LIST_POSITION, position);
                 intent.putExtra("persona", personeArrayList.get(position));
+                intent.putExtra("locandine", locandine[position]);
                 startActivity(intent);
             }
         };
